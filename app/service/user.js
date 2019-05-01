@@ -14,14 +14,14 @@ class UserService extends Service {
                 `select id, region, date, url, title, abstract from zimaoqu where TO_DAYS(NOW()) - TO_DAYS(date) <= ${differ} and abstract like '%${param.keywords}%' order by ${sort}`,
             );
             totalNum = res.length;
-            results = res.slice(6 * (param.pageNum), 6 + 6 * (param.pageNum));
+            results = res.slice(4 * (param.pageNum), 4 + 4 * (param.pageNum));
             return { results, totalNum };
         } else {
             res = await this.app.mysql.query(
                 `select id, region, date, url, title, abstract from zimaoqu where region = '${param.region}' and TO_DAYS(NOW()) - TO_DAYS(date) <= ${differ} and abstract like '%${param.keywords}%' order by ${sort}`,
             );
             totalNum = res.length;
-            results = res.slice(6 * (param.pageNum), 6 + 6 * (param.pageNum));
+            results = res.slice(4 * (param.pageNum), 4 + 4 * (param.pageNum));
             return { results, totalNum };
         }
     }
